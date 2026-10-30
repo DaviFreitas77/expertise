@@ -8,8 +8,9 @@ import {
   type FormEvent,
 } from "react";
 import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+import { FaUser, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { PiUsers } from "react-icons/pi";
-const whatsappUrl = "https://wa.me/5511940782687";
+const whatsappUrl = "https://wa.me/5535991443116";
 
 function Arrow() {
   return (
@@ -104,14 +105,14 @@ const servicePoints = [
   {
     side: "left",
     title: "Limpeza",
-   description:
-    "Serviços de limpeza e conservação de ambientes, com equipe preparada para manter os espaços higienizados, organizados e agradáveis.",
+    description:
+      "Serviços de limpeza e conservação de ambientes, com equipe preparada para manter os espaços higienizados, organizados e agradáveis.",
   },
   {
     side: "right",
     title: "instalação e manutenção elétrica.",
     description:
-    "Execução de instalações elétricas e manutenção preventiva e corretiva, garantindo o bom funcionamento, a segurança e a eficiência dos sistemas elétricos.",
+      "Execução de instalações elétricas e manutenção preventiva e corretiva, garantindo o bom funcionamento, a segurança e a eficiência dos sistemas elétricos.",
   },
   {
     side: "right",
@@ -166,6 +167,10 @@ export default function Home() {
   ];
 
   useEffect(() => {
+    function closeMenu() {
+      setMenuOpen(false);
+    }
+
     const section = servicesRef.current;
 
     const revealElements =
@@ -367,7 +372,7 @@ export default function Home() {
           <div className="animate-[heroRise_.8s_ease_both] pb-8 md:pb-[47px]">
             <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
               <span className="h-[2px] w-6 bg-[#ffd21f]" />
-              Solução em portaria
+              Portaria & limpeza patrimonial
             </p>
 
             <h1 className=" text-[40px] font-semibold leading-[1.07]  md:text-[clamp(39px,4.7vw,62px)]">
@@ -839,69 +844,115 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-[#303940]  pb-5 pt-14 text-[#d9dfe3]">
+
+      <footer className="border-t border-[#303940] bg-[#080a0d] pb-6 pt-14 text-[#d9dfe3]">
         <div
-          className={`${container} grid gap-8 border-b border-[#303940] pb-12 sm:grid-cols-2 md:grid-cols-[1.2fr_0.9fr_0.7fr_1fr]`}
+          className={`${container} grid gap-10 border-b border-[#303940] pb-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.7fr_1.3fr]`}
         >
-          <a href="#inicio" className="inline-block">
-            <Brand />
-          </a>
+          {/* MARCA */}
+          <div className="flex flex-col items-start gap-5">
+            <a href="#inicio" className="inline-block">
+              <Brand />
+            </a>
 
-          <p className="text-[11px] leading-[1.7] text-[#909da6]">
-            Solução em Portaria
-            <br />
-            para condomínios mais seguros.
-          </p>
-
-          <nav className="flex flex-col gap-3 text-[11px]">
-            <a href="#sobre" className="transition hover:text-[#ffd21f]">
-              Sobre nós
-            </a>
-            <a href="#servicos" className="transition hover:text-[#ffd21f]">
-              Serviços
-            </a>
-            <a href="#diferenciais" className="transition hover:text-[#ffd21f]">
-              Diferenciais
-            </a>
-            <a href="#contato" className="transition hover:text-[#ffd21f]">
-              Contato
-            </a>
-          </nav>
-
-          <div className="flex flex-col gap-3 text-[11px] text-[#ffd21f]">
-            <a href={whatsappUrl} target="_blank" rel="noreferrer">
-              (11) 94078-2687
-            </a>
+            <p className="max-w-[260px] text-sm leading-7 text-[#909da6]">
+              Soluções profissionais em portaria e limpeza patrimonial para
+              condomínios.
+            </p>
 
             <a
               href="https://www.instagram.com/expertiseportaria/"
               target="_blank"
               rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-[#ffd21f] transition hover:text-[#ffe37a]"
             >
               @expertiseportaria
             </a>
+          </div>
+
+          {/* NAVEGAÇÃO */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+              Navegação
+            </h3>
+
+            <nav className="flex flex-col gap-4 text-sm text-[#909da6]">
+              <a href="#inicio" className="transition hover:text-[#ffd21f]">
+                Início
+              </a>
+              <a href="#sobre" className="transition hover:text-[#ffd21f]">
+                Sobre nós
+              </a>
+              <a href="#servicos" className="transition hover:text-[#ffd21f]">
+                Serviços
+              </a>
+              <a
+                href="#diferenciais"
+                className="transition hover:text-[#ffd21f]"
+              >
+                Diferenciais
+              </a>
+              <a href="#contato" className="transition hover:text-[#ffd21f]">
+                Contato
+              </a>
+            </nav>
+          </div>
+
+          {/* CONTATOS */}
+          <div className="flex flex-col gap-5">
+            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-white">
+              Fale com nossa equipe
+            </h3>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                ["Daniel", "(35) 99144-3116"],
+                ["Juliana", "(11) 95757-8188"],
+                ["Ivan", "(11) 95757-8317"],
+                ["Angela", "(11) 95757-6192"],
+                ["Willam", "(11) 94014-1578"],
+              ].map(([name, phone]) => (
+                <a
+                  key={name}
+                  href={`https://wa.me/55${phone.replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex flex-col gap-1"
+                >
+                  <span className="text-xs text-[#78858e]">{name}</span>
+                  <span className="text-sm text-[#d9dfe3] transition group-hover:text-[#ffd21f]">
+                    {phone}
+                  </span>
+                </a>
+              ))}
+            </div>
 
             <a
               href="https://www.expertiseportaria.com.br"
               target="_blank"
               rel="noreferrer"
+              className="mt-1 w-fit text-sm text-[#ffd21f] transition hover:text-[#ffe37a]"
             >
-              expertiseportaria.com.br
+              expertiseportaria.com.br →
             </a>
           </div>
         </div>
 
+        {/* RODAPÉ INFERIOR */}
         <div
-          className={`${container} flex flex-col justify-between gap-3 pt-5 text-[9px] text-[#78858e] md:flex-row`}
+          className={`${container} flex flex-col justify-between gap-4 pt-6 text-[10px] text-[#78858e] md:flex-row md:items-center`}
         >
           <span>
-            © 2025 EXPERTISE PORTARIA & LIMPEZA PATRIMONIAL - 29.593.962/0001-83. Todos os direitos
+            © 2026 EXPERTISE PORTARIA & LIMPEZA PATRIMONIAL. Todos os direitos
             reservados.
           </span>
+
+          <span>CNPJ: 29.593.962/0001-83</span>
         </div>
       </footer>
 
       {/* MODAL DE CONTATOS WHATSAPP */}
+
       {whatsAppModalOpen && (
         <div
           className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 px-4 py-6 backdrop-blur-md"
@@ -912,37 +963,28 @@ export default function Home() {
             aria-modal="true"
             aria-labelledby="whatsapp-modal-title"
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-h-[600px] md:max-h-full over max-w-[600px] overflow-scroll md:overflow-hidden border border-[#343434] bg-[#101014] shadow-[0_20px_80px_rgba(0,0,0,0.6)] animate-[heroRise_.3s_ease_both]"
+            className="relative max-h-[85dvh] w-full max-w-[600px] overflow-y-auto border border-[#343434] bg-[#101014] shadow-[0_20px_80px_rgba(0,0,0,0.6)] animate-[heroRise_.3s_ease_both]"
           >
             {/* DETALHE SUPERIOR */}
-            <div className="h-[4px] w-full bg-[#ffd21f]" />
+            <div className="sticky top-0 z-10 h-[4px] w-full bg-[#ffd21f]" />
 
             {/* FECHAR */}
             <button
               type="button"
               onClick={() => setWhatsAppModalOpen(false)}
               aria-label="Fechar janela"
-              className="absolute right-5 top-6 grid h-9 w-9 place-items-center border border-[#343434] text-xl text-white transition hover:border-[#ffd21f] hover:text-[#ffd21f]"
+              className="absolute right-5 top-6 z-20 grid h-9 w-9 place-items-center border border-[#343434] text-xl text-white transition hover:border-[#ffd21f] hover:text-[#ffd21f]"
             >
               ×
             </button>
 
-            <div className="p-7 sm:p-9">
-              {/* ÍCONE */}
+            <div className="p-6 sm:p-9">
+              {/* ÍCONE WHATSAPP */}
               <div className="mb-6 grid h-14 w-14 place-items-center border border-[#ffd21f]/30 bg-[#ffd21f]/10">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-7 w-7"
-                  fill="none"
-                  stroke="#ffd21f"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z" />
-                </svg>
+                <FaWhatsapp className="h-7 w-7 text-[#ffd21f]" />
               </div>
 
+              {/* TÍTULO */}
               <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[#ffd21f]">
                 EXPERTISE · ATENDIMENTO
               </p>
@@ -960,47 +1002,67 @@ export default function Home() {
               </p>
 
               {/* LISTA DE CONTATOS */}
-              <div className="flex flex-col gap-3">
-                {whatsappContacts.map((contact, index) => (
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {[
+                  {
+                    name: "Daniel",
+                    number: "5535991443116",
+                    description: "(35) 99144-3116",
+                  },
+                  {
+                    name: "Juliana",
+                    number: "5511957578188",
+                    description: "(11) 95757-8188",
+                  },
+                  {
+                    name: "Ivan",
+                    number: "5511957578317",
+                    description: "(11) 95757-8317",
+                  },
+                  {
+                    name: "Angela",
+                    number: "5511957576192",
+                    description: "(11) 95757-6192",
+                  },
+                  {
+                    name: "Willam",
+                    number: "5511940141578",
+                    description: "(11) 94014-1578",
+                  },
+                ].map((contact) => (
                   <a
-                    key={contact.number + index}
+                    key={contact.number}
                     href={`https://wa.me/${contact.number}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     onClick={() => setWhatsAppModalOpen(false)}
-                    className="group flex items-center gap-4 border border-[#303940] bg-[#17171c] p-4 transition-all duration-300 hover:border-[#ffd21f] hover:bg-[#202025]"
+                    className="group flex min-w-0 items-center gap-3 border border-[#303940] bg-[#17171c] p-4 transition-all duration-300 hover:border-[#ffd21f] hover:bg-[#202025]"
                   >
+                    {/* ÍCONE DO CONTATO */}
                     <div className="grid h-10 w-10 shrink-0 place-items-center bg-[#ffd21f]/10 text-[#ffd21f] transition group-hover:bg-[#ffd21f] group-hover:text-black">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                      </svg>
+                      <FaUser className="h-4 w-4" />
                     </div>
 
+                    {/* INFORMAÇÕES */}
                     <div className="min-w-0 flex-1">
                       <h3 className="text-xs font-bold text-white transition group-hover:text-[#ffd21f]">
                         {contact.name}
                       </h3>
+
                       <p className="mt-1 text-[10px] text-[#929ba2]">
                         {contact.description}
                       </p>
                     </div>
 
-                    <span className="text-lg text-[#ffd21f] transition group-hover:translate-x-1">
-                      ↗
+                    {/* ÍCONE DE SETA */}
+                    <span className="text-[#ffd21f] transition group-hover:translate-x-1">
+                      <FaArrowUpRightFromSquare className="h-4 w-4" />
                     </span>
                   </a>
                 ))}
               </div>
 
+              {/* RODAPÉ DO MODAL */}
               <p className="mt-6 text-center text-[9px] tracking-wide text-[#68727a]">
                 EXPERTISE — Solução em Portaria
               </p>
@@ -1010,14 +1072,14 @@ export default function Home() {
       )}
 
       {/* BOTÃO FLUTUANTE WHATSAPP */}
-   <button
-  type="button"
-  onClick={() => setWhatsAppModalOpen(true)}
-  aria-label="Escolher atendimento pelo WhatsApp"
-  className="fixed bottom-6 right-4 z-[100] grid h-15 w-15 place-items-center rounded-full bg-[#ffd21f] text-black transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-15 md:right-8 cursor-pointer"
->
-  <FaWhatsapp className="h-7 w-7" />
-</button>
+      <button
+        type="button"
+        onClick={() => setWhatsAppModalOpen(true)}
+        aria-label="Escolher atendimento pelo WhatsApp"
+        className="fixed bottom-6 right-4 z-[100] grid h-15 w-15 place-items-center rounded-full bg-[#ffd21f] text-black transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-15 md:right-8 cursor-pointer"
+      >
+        <FaWhatsapp className="h-7 w-7" />
+      </button>
     </main>
   );
 }

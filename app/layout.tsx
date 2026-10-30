@@ -6,15 +6,16 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.expertiseportaria.com.br"),
 
   title: {
-    default: "EXPERTISE | Portaria e Controle de Acesso",
+    default: "EXPERTISE | Portaria & Limpeza patrimonial",
     template: "%s | EXPERTISE",
   },
 
   description:
-    "Portaria presencial, controle de acesso e recepção para condomínios em São Paulo. Conheça a EXPERTISE e solicite um orçamento.",
+    "Portaria presencial, controle de acesso , limpeza e conservação para condomínios em São Paulo. Conheça a EXPERTISE e solicite um orçamento.",
 
   keywords: [
     "portaria para condomínios",
+    "limpeza para condomínios",
     "portaria presencial",
     "controle de acesso",
     "recepção de condomínios",
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
     "solução em portaria",
   ],
 
-  authors: [{ name: "EXPERTISE Solução em Portaria" }],
-  creator: "EXPERTISE Solução em Portaria",
-  publisher: "EXPERTISE Solução em Portaria",
+  authors: [{ name: "EXPERTISE portaria e limpeza patrimonial" }],
+  creator: "EXPERTISE Solução em condominios",
+  publisher: "EXPERTISE Solução em condominios",
 
   alternates: {
     canonical: "/",
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: "/",
-    siteName: "EXPERTISE — Solução em Portaria",
-    title: "EXPERTISE | Portaria e Controle de Acesso",
+    siteName: "EXPERTISE — portaria e limpeza patrimonial",
+    title: "EXPERTISE | Portaria e limpeza patrimonial",
     description: "Segurança, organização e tranquilidade para o seu condomínio.",
     images: [
       {
