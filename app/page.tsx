@@ -835,7 +835,6 @@ export default function Home() {
       </footer>
       {/* BOTÃO VOLTAR AO TOPO */}
 
-
       {/* MODAL DE CONTATOS WHATSAPP */}
       {whatsAppModalOpen && (
         <div
@@ -863,7 +862,6 @@ export default function Home() {
             </button>
 
             <div className="p-7 sm:p-9">
-
               {/* ÍCONE */}
               <div className="mb-6 grid h-14 w-14 place-items-center border border-[#ffd21f]/30 bg-[#ffd21f]/10">
                 <svg
@@ -945,7 +943,7 @@ export default function Home() {
         </div>
       )}
 
-        {/* BOTÃO VOLTAR AO TOPO */}
+      {/* BOTÃO VOLTAR AO TOPO */}
       {showBackToTop && (
         <button
           type="button"
@@ -956,19 +954,18 @@ export default function Home() {
             })
           }
           aria-label="Voltar ao topo"
-          className="fixed bottom-6 right-6 z-[100] grid h-12 w-12 place-items-center rounded-full border border-black/10 bg-[#ffd21f] text-2xl font-bold text-black shadow-[0_5px_25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-8 md:right-8 cursor-pointer"
+          className="fixed bottom-3 right-4 z-[100] grid h-11 w-11 place-items-center rounded-full border border-black/10 bg-[#ffd21f] text-2xl font-bold text-black shadow-[0_5px_25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-8 md:right-8 cursor-pointer"
         >
           ↑
         </button>
       )}
-
 
       {/* BOTÃO FLUTUANTE WHATSAPP */}
       <button
         type="button"
         onClick={() => setWhatsAppModalOpen(true)}
         aria-label="Escolher atendimento pelo WhatsApp"
-        className="fixed bottom-20 right-6 z-[100] grid h-12 w-12 place-items-center rounded-full bg-[#ffd21f] text-black shadow-[0_5px_25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-24 md:right-8"
+       className="fixed bottom-[62px] right-4 z-[100] grid h-11 w-11 place-items-center rounded-full bg-[#ffd21f] text-black shadow-[0_5px_25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-24 md:right-8"
       >
         <svg
           viewBox="0 0 24 24"
@@ -982,10 +979,6 @@ export default function Home() {
           <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z" />
         </svg>
       </button>
-
-    
-
-   
     </main>
   );
 }
