@@ -103,15 +103,15 @@ const servicePoints = [
   },
   {
     side: "left",
-    title: "Profissionais preparados",
-    description:
-      "Equipe capacitada para as rotinas de portaria, atuando com atenção, responsabilidade e profissionalismo.",
+    title: "Limpeza",
+   description:
+    "Serviços de limpeza e conservação de ambientes, com equipe preparada para manter os espaços higienizados, organizados e agradáveis.",
   },
   {
     side: "right",
-    title: "Atenção aos procedimentos",
+    title: "instalação e manutenção elétrica.",
     description:
-      "Cumprimento das normas do condomínio, com cuidado na identificação de visitantes e liberação de acessos.",
+    "Execução de instalações elétricas e manutenção preventiva e corretiva, garantindo o bom funcionamento, a segurança e a eficiência dos sistemas elétricos.",
   },
   {
     side: "right",
@@ -1010,14 +1010,14 @@ export default function Home() {
       )}
 
       {/* BOTÃO FLUTUANTE WHATSAPP */}
-      <button
-        type="button"
-        onClick={() => setWhatsAppModalOpen(true)}
-        aria-label="Escolher atendimento pelo WhatsApp"
-        className="fixed  right-4 z-[100] grid h-15 w-15 place-items-center rounded-full bg-[#ffd21f] text-black  transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-15 md:right-8 cursor-pointer"
-      >
-        <FaWhatsapp className="h-7 w-7" />
-      </button>
+   <button
+  type="button"
+  onClick={() => setWhatsAppModalOpen(true)}
+  aria-label="Escolher atendimento pelo WhatsApp"
+  className="fixed bottom-6 right-4 z-[100] grid h-15 w-15 place-items-center rounded-full bg-[#ffd21f] text-black transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-15 md:right-8 cursor-pointer"
+>
+  <FaWhatsapp className="h-7 w-7" />
+</button>a
     </main>
   );
 }
