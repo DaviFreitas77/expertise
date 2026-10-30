@@ -1017,7 +1017,7 @@ export default function Home() {
   className="fixed bottom-6 right-4 z-[100] grid h-15 w-15 place-items-center rounded-full bg-[#ffd21f] text-black transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-15 md:right-8 cursor-pointer"
 >
   <FaWhatsapp className="h-7 w-7" />
-</button>a
+</button>
     </main>
   );
 }
