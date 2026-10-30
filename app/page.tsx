@@ -464,7 +464,7 @@ Aguardo o retorno. Obrigado!
           </div>
         </div>
 
-        <div className="mt-10 border-t border-[#252b30] text-[9px] uppercase tracking-wider text-white md:text-[10px]">
+        <div className="mt-10 border-t border-[#252b30] Ver todas astext-[9px] uppercase tracking-wider text-white md:text-[10px]">
           <div
             className={`${container} flex flex-wrap gap-x-6 gap-y-3 py-5 md:gap-10`}
           >
@@ -584,7 +584,7 @@ Aguardo o retorno. Obrigado!
               href="#contato"
               className="group flex w-fit items-center gap-3 border-b border-white/30 pb-1 text-xs text-[#c4c4c4] transition-colors hover:border-white hover:text-white"
             >
-              Ver todas as áreas
+              Vamos conversar
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
