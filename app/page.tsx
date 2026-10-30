@@ -224,10 +224,41 @@ export default function Home() {
     setMenuOpen(false);
   }
 
-  function submitForm(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const name = formData.get("name");
+    const company = formData.get("company");
+    const phone = formData.get("phone");
+    const city = formData.get("city");
+    const service = formData.get("service");
+    const message = formData.get("message");
+
+    const whatsappMessage = `
+Olá, Daniel! Gostaria de solicitar um orçamento com a EXPERTISE.
+
+*Dados do contato:*
+
+Nome: ${name}
+Condomínio/Empresa: ${company}
+Telefone: ${phone}
+Cidade: ${city}
+
+*Serviço de interesse:*
+${service}
+
+*Mensagem:*
+${message}
+
+Aguardo o retorno. Obrigado!
+  `.trim();
+
+    const whatsappUrl = `https://wa.me/5535991443116?text=${encodeURIComponent(whatsappMessage)}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
 
   const container =
     "mx-auto w-[calc(100%-32px)] max-w-[1500px] md:w-[calc(100%-64px)]";
@@ -440,13 +471,6 @@ export default function Home() {
             <span>Segurança 24 horas</span>
             <span>Equipe qualificada</span>
             <span>Atendimento personalizado</span>
-
-            <span className="md:ml-auto">
-              Fale com a gente:{" "}
-              <a className="text-[#ffd21f]" href={whatsappUrl}>
-                (11) 94078-2687
-              </a>
-            </span>
           </div>
         </div>
       </section>
@@ -666,7 +690,6 @@ export default function Home() {
             <h2 className="font-serif text-[clamp(34px,4vw,46px)] font-normal leading-tight tracking-tight text-white">
               Solicite uma visita{" "}
               <em className="not-italic text-[#ffd21f]">
-                {" "}
                 e faça seu orçamento!
               </em>
             </h2>
@@ -677,28 +700,75 @@ export default function Home() {
             </p>
 
             <div className="border-t border-[#303940]">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex flex-col gap-2 border-b border-[#303940] py-4 transition hover:text-[#ffd21f]"
-              >
-                <small className="text-[9px] uppercase tracking-[0.14em] text-[#89949a]">
-                  WhatsApp comercial
+              {/* CONTATOS DA EQUIPE */}
+              <div className="border-b border-[#303940] py-5">
+                <small className="mb-4 block text-[9px] uppercase tracking-[0.14em] text-[#89949a]">
+                  Canais de atendimento
                 </small>
-                <strong className="text-xs">(11) 94078-2687 ↗</strong>
-              </a>
 
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    {
+                      name: "Daniel",
+                      number: "5535991443116",
+                      phone: "(35) 99144-3116",
+                    },
+                    {
+                      name: "Juliana",
+                      number: "5511957578188",
+                      phone: "(11) 95757-8188",
+                    },
+                    {
+                      name: "Ivan",
+                      number: "5511957578317",
+                      phone: "(11) 95757-8317",
+                    },
+                    {
+                      name: "Angela",
+                      number: "5511957576192",
+                      phone: "(11) 95757-6192",
+                    },
+                    {
+                      name: "Willam",
+                      number: "5511940141578",
+                      phone: "(11) 94014-1578",
+                    },
+                  ].map((contact) => (
+                    <a
+                      key={contact.number}
+                      href={`https://wa.me/${contact.number}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex flex-col gap-1 transition"
+                    >
+                      <span className="text-[10px] text-[#89949a] transition group-hover:text-[#ffd21f]">
+                        {contact.name}
+                      </span>
+
+                      <strong className="flex items-center gap-2 text-xs text-white transition group-hover:text-[#ffd21f]">
+                        {contact.phone}
+                        <FaArrowUpRightFromSquare className="h-3 w-3 text-[#ffd21f] transition group-hover:translate-x-1" />
+                      </strong>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* INSTAGRAM */}
               <a
                 href="https://www.instagram.com/expertiseportaria/"
                 target="_blank"
-                rel="noreferrer"
-                className="flex flex-col gap-2 border-b border-[#303940] py-4 transition hover:text-[#ffd21f]"
+                rel="noopener noreferrer"
+                className="group flex flex-col gap-2 border-b border-[#303940] py-4 transition hover:text-[#ffd21f]"
               >
                 <small className="text-[9px] uppercase tracking-[0.14em] text-[#89949a]">
                   Instagram
                 </small>
-                <strong className="text-xs">@expertiseportaria ↗</strong>
+
+                <strong className="flex items-center gap-2 text-xs">
+                  @expertiseportaria
+                  <FaArrowUpRightFromSquare className="h-3 w-3 text-[#ffd21f] transition group-hover:translate-x-1" />
+                </strong>
               </a>
             </div>
           </div>
@@ -817,8 +887,8 @@ export default function Home() {
                 </label>
 
                 <p className="mb-5 text-[10px] leading-relaxed text-[#89949a]">
-                  Para uma resposta mais rápida, você também pode falar conosco
-                  pelo WhatsApp.
+                  A o enviar seus dados, você concorda com o armazenamento e uso
+                  das informações fornecidas para fins de contato.
                 </p>
 
                 <button
