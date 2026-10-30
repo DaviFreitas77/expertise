@@ -1,6 +1,5 @@
 
-
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -9,7 +8,7 @@
   --color-brand-navy: #0b0b0f;
   --color-brand-paper: #f4f4f1;
   --font-sans: "DM Sans", sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: "Montserrat", sans-serif;
 }
 
 :root {
@@ -125,4 +124,22 @@ body {
     transition-duration: .01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+body,
+p,
+a,
+button,
+input,
+textarea,
+select,
+label {
+  font-family: "DM Sans", sans-serif;
 }

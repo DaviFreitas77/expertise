@@ -7,7 +7,8 @@ import {
   type CSSProperties,
   type FormEvent,
 } from "react";
-
+import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+import { PiUsers } from "react-icons/pi";
 const whatsappUrl = "https://wa.me/5511940782687";
 
 function Arrow() {
@@ -87,39 +88,42 @@ const differences = [
   "Compromisso com a qualidade.",
   "Soluções sob medida para cada condomínio.",
 ];
-
 const servicePoints = [
   {
     side: "left",
     title: "Controle de acesso",
-    description: "Organização da entrada e saída de pessoas no condomínio.",
+    description:
+      "Organização da entrada e saída de moradores, visitantes e prestadores de serviços, seguindo as regras do condomínio.",
   },
   {
     side: "left",
     title: "Atendimento e recepção",
     description:
-      "Orientação a moradores, visitantes e prestadores de serviços.",
+      "Atendimento cordial e orientação a moradores, visitantes e prestadores, garantindo uma recepção organizada.",
   },
   {
     side: "left",
     title: "Profissionais preparados",
-    description: "Equipe capacitada para as rotinas de portaria.",
+    description:
+      "Equipe capacitada para as rotinas de portaria, atuando com atenção, responsabilidade e profissionalismo.",
   },
   {
     side: "right",
     title: "Atenção aos procedimentos",
     description:
-      "Cumprimento das orientações e regras de acesso estabelecidas.",
+      "Cumprimento das normas do condomínio, com cuidado na identificação de visitantes e liberação de acessos.",
   },
   {
     side: "right",
     title: "Organização e confiança",
-    description: "Atendimento responsável e organizado no dia a dia.",
+    description:
+      "Atuação responsável e organizada, contribuindo para uma rotina mais tranquila no condomínio.",
   },
   {
     side: "right",
     title: "Soluções para condomínios",
-    description: "Serviços alinhados às necessidades de cada local.",
+    description:
+      "Serviços adaptados à estrutura, ao fluxo de pessoas e às necessidades de cada condomínio.",
   },
 ];
 
@@ -128,7 +132,6 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [headerScrolled, setHeaderScrolled] = useState(false);
   const [servicesVisible, setServicesVisible] = useState(false);
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const [whatsAppModalOpen, setWhatsAppModalOpen] = useState(false);
 
@@ -184,7 +187,6 @@ export default function Home() {
 
     const onScroll = () => {
       setHeaderScrolled(window.scrollY > 24);
-      setShowBackToTop(window.scrollY > 300);
     };
 
     onScroll();
@@ -238,68 +240,127 @@ export default function Home() {
         <div
           className={`${container} flex h-full items-center justify-between`}
         >
-          <a href="#inicio" onClick={closeMenu}>
+          {/* LOGO */}
+          <a href="#inicio" onClick={closeMenu} className="relative z-50">
             <Brand />
           </a>
 
+          {/* BOTÃO MOBILE */}
           <button
-            className="flex flex-col gap-[5px] p-2 md:hidden"
+            className="relative z-50 flex flex-col gap-[5px] p-2 md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           >
             <span
-              className={`h-[2px] w-[22px] bg-white transition ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`}
+              className={`h-[2px] w-[22px] bg-white transition-all duration-300 ${
+                menuOpen ? "translate-y-[7px] rotate-45" : ""
+              }`}
             />
             <span
-              className={`h-[2px] w-[22px] bg-white transition ${menuOpen ? "opacity-0" : ""}`}
+              className={`h-[2px] w-[22px] bg-white transition-all duration-300 ${
+                menuOpen ? "opacity-0" : ""
+              }`}
             />
             <span
-              className={`h-[2px] w-[22px] bg-white transition ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`}
+              className={`h-[2px] w-[22px] bg-white transition-all duration-300 ${
+                menuOpen ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
             />
           </button>
 
-          <nav
-            className={`${
-              menuOpen
-                ? "flex translate-y-0 opacity-100 visible"
-                : "invisible -translate-y-2 opacity-0 md:visible md:translate-y-0 md:opacity-100"
-            } absolute left-0 right-0 top-[72px] flex-col gap-6 bg-[#0b0b0f] p-6 text-sm text-[#c2cad0] shadow-xl transition-all md:static md:flex md:flex-row md:items-center md:gap-[30px] md:bg-transparent md:p-0 md:shadow-none`}
-          >
+          {/* NAVEGAÇÃO DESKTOP */}
+          <nav className="hidden items-center gap-[30px] md:flex">
             {[
               ["Início", "#inicio"],
               ["Sobre nós", "#sobre"],
               ["Serviços", "#servicos"],
               ["Diferenciais", "#diferenciais"],
-              ["Contato", "#contato"],
             ].map(([label, href]) => (
               <a
                 key={href}
                 href={href}
-                onClick={closeMenu}
-                className="transition-colors hover:text-brand-yellow"
+                className="text-sm text-[#c2cad0] transition-colors hover:text-white"
               >
                 {label}
               </a>
             ))}
+            {/* BOTÃO CONTATAR EQUIPE */}
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noreferrer"
+  className="group relative inline-flex items-center justify-center gap-4 overflow-hidden rounded-full bg-[#ffd21f] px-7 py-3 text-xs font-bold !text-black shadow-[0_5px_20px_rgba(255,210,31,0.15)] transition-all duration-500 hover:-translate-y-1 hover:bg-[#ffe37a] hover:shadow-[0_10px_35px_rgba(255,210,31,0.3)] active:translate-y-0 active:scale-[0.98]"
+>
+  <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-[200%]" />
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={closeMenu}
-              className="inline-flex items-center justify-center gap-4 bg-[#ffd21f] px-5 py-3 text-xs font-bold !text-black transition hover:-translate-y-1 hover:bg-[#ffe37a]"
-            >
-              Contatar equipe <Arrow />
-            </a>
+  <span className="relative z-10">Contatar Equipe</span>
+
+  <PiUsers
+    size={18}
+    strokeWidth={2.5}
+    className="relative z-10 transition-transform duration-300 group-hover:scale-110"
+  />
+</a>
+            
           </nav>
         </div>
       </header>
+      {/* MENU MOBILE */}
+      <nav
+        className={`fixed inset-x-0 bottom-0 top-[72px] z-[45] flex flex-col bg-[#0b0b0f] px-6 pb-8 pt-8 transition-all duration-500 md:hidden ${
+          menuOpen
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-3 opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* LINKS */}
+        <div className="flex flex-col">
+          {[
+            ["Início", "#inicio"],
+            ["Sobre nós", "#sobre"],
+            ["Serviços", "#servicos"],
+            ["Diferenciais", "#diferenciais"],
+          ].map(([label, href], index) => (
+            <a
+              key={href}
+              href={href}
+              onClick={closeMenu}
+              className="group flex items-center justify-between border-b border-[#252525] py-5 text-[17px] font-medium text-[#c2cad0] transition-colors hover:text-white"
+            >
+              <span>{label}</span>
+
+              <span className="text-[11px] font-medium tracking-widest text-[#656565] transition-colors group-hover:text-[#ffd21f]">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {/* BOTÃO CONTATAR EQUIPE */}
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={closeMenu}
+          className="group relative mt-auto inline-flex w-full shrink-0 items-center justify-center gap-3 overflow-hidden rounded-full bg-[#ffd21f] px-7 py-[15px] text-sm font-bold !text-black shadow-[0_5px_20px_rgba(255,210,31,0.15)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] active:translate-y-0 active:scale-[0.98]"
+        >
+          <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+
+          <span className="relative z-10 text-xs">Contatar Equipe</span>
+
+          <PiUsers
+            size={18}
+            strokeWidth={2.5}
+            className="relative z-10 transition-transform duration-300 group-hover:scale-110"
+          />
+        </a>
+      </nav>
 
       {/* HERO */}
       <section
         id="inicio"
-        className="relative overflow-hidden bg-[#0b0b0f] pb-0 pt-[120px] md:pt-[164px]"
+        className="relative overflow-hidden bg-[#0b0b0f] pb-0 pt-[120px] md:pt-[224px]"
       >
         <div
           className={`${container} grid items-center gap-12 md:grid-cols-[0.86fr_1.14fr] md:gap-[77px]`}
@@ -310,7 +371,7 @@ export default function Home() {
               Solução em portaria
             </p>
 
-            <h1 className="font-['Space_Grotesk'] text-[40px] font-semibold leading-[1.07] tracking-[-0.05em] md:text-[clamp(39px,4.7vw,62px)]">
+            <h1 className=" text-[40px] font-semibold leading-[1.07]  md:text-[clamp(39px,4.7vw,62px)]">
               Mais segurança e{" "}
               <em className="not-italic text-[#ffd21f]">tranquilidade</em> para
               o seu condomínio!
@@ -318,26 +379,38 @@ export default function Home() {
 
             <div className="mt-6 h-[3px] w-[72px] bg-[#ffd21f]" />
 
-            <p className="mt-7 max-w-[430px] text-sm leading-[1.75] text-[#b9c4cc]">
+            <p className="mt-7 max-w-[430px] text-base leading-[1.75] text-[#b9c4cc]">
               Soluções em portaria com profissionais preparados para atender às
               necessidades do seu condomínio.
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-7">
               <a
-                className="inline-flex items-center justify-center gap-4 bg-[#ffd21f] px-5 py-[13px] text-[11px] font-bold !text-black transition hover:-translate-y-1 hover:bg-[#ffe37a]"
+                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-[#ffd21f] px-5 py-[13px] text-sm font-bold !text-black shadow-[0_4px_14px_rgba(255,210,31,0.08)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#ffe37a] hover:shadow-[0_8px_24px_rgba(255,210,31,0.18)] active:translate-y-0 active:scale-[0.98]"
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                Solicite um orçamento <Arrow />
+                {/* Efeito de brilho */}
+                <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+
+                <span className="relative z-10">Contatar Equipe</span>
+
+                <FaWhatsapp
+                  size={20}
+                  className="relative z-10 transition-transform duration-300 ease-out group-hover:rotate-[-8deg] group-hover:scale-110"
+                />
               </a>
 
               <a
-                className="border-b border-[#5b6142] pb-1 text-xs font-bold text-[#ffd21f] transition hover:border-[#ffd21f]"
+                className="group inline-flex items-center justify-center gap-3 rounded-full border border-[#454545] px-5 py-[13px] text-sm font-semibold text-[#d0d2d5] transition-all duration-300 hover:-translate-y-1 hover:border-[#777] hover:bg-white/5 hover:text-white active:translate-y-0"
                 href="#servicos"
               >
-                Conheça os serviços →
+                Conheça os serviços
+                <FaArrowRight
+                  size={13}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </a>
             </div>
           </div>
@@ -373,135 +446,153 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SOBRE NÓS */}
+
       {/* SOBRE NÓS */}
       <section
         id="sobre"
         className="border-b border-[#121213] bg-[#0b0b0f] py-20 md:py-[120px]"
       >
         <div
-          className={`${container} grid items-center gap-14 md:grid-cols-[1.05fr_0.95fr] md:gap-[115px]`}
+          className={`${container} grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-[100px]`}
         >
+          {/* IMAGEM */}
           <div
             data-reveal="image"
-            className="relative h-[290px] bg-[url('/about-reception.jpg')] bg-cover bg-center saturate-75 md:h-[435px]"
+            className="relative h-[290px] bg-[url('/about-reception.jpg')] bg-cover bg-center rounded-lg saturate-75 sm:h-[380px] lg:h-[435px]"
           >
-            <div className="absolute -right-[18px] top-[18px] h-full w-[32%] border-r-2 border-t-2 border-[#ffd21f]" />
+            <div className="absolute -right-[12px] top-[12px] h-full w-[32%] border-r-2 border-t-2 border-[#ffd21f] sm:-right-[18px] sm:top-[18px]" />
           </div>
 
+          {/* CONTEÚDO */}
           <div data-reveal="up">
-            <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
-              <span className="h-[2px] w-6 bg-[#ffd21f]" />
-              Expertise — solução em portaria
+            {/* BADGE */}
+            <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.2em] text-[#c4c4c4]">
+              Sobre nós
             </p>
 
-            <h2 className="font-['Space_Grotesk'] text-[clamp(39px,4vw,55px)] font-semibold leading-tight tracking-[-0.05em]">
+            {/* TÍTULO */}
+            <h2 className="font-serif text-[clamp(34px,4vw,46px)] font-normal leading-tight tracking-tight text-white max-w-[550px]">
               Portaria que{" "}
               <em className="not-italic text-[#ffd21f]">faz a diferença.</em>
             </h2>
 
-            <p className="mt-7 max-w-[430px] text-sm leading-[1.8] text-white">
+            {/* DESCRIÇÃO */}
+            <p className="mt-7 max-w-[460px] text-base leading-[1.8] text-[#d0d2d5] md:text-[15px]">
               Profissionais treinados e capacitados para contribuir com a
-              segurança do seu condomínio, com atendimento, organização e
+              segurança do seu condomínio, oferecendo atendimento, organização e
               comprometimento no dia a dia.
             </p>
 
-            <div className="mt-9 flex max-w-[430px] flex-col gap-4 border-t border-[#303940] pt-5">
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#8a959d]">
-                Atendimento
+            {/* DIFERENCIAL */}
+            <div className="mt-9 flex max-w-[460px] flex-col gap-4 border-t border-[#303940] pt-5">
+              <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#8a959d]">
+                Nosso compromisso
               </span>
-              <strong className="font-['Space_Grotesk'] text-[17px] font-medium">
+
+              <strong className="text-[17px] font-medium text-white">
                 Do jeito que cada condomínio precisa.
               </strong>
+            </div>
+
+            {/* EXPERIÊNCIA */}
+            <div className="mt-8 flex flex-wrap items-center gap-8 border-t border-[#303940] pt-6">
+              <div>
+                <p className="text-3xl font-semibold tracking-tight text-[#ffd21f]">
+                  10 anos
+                </p>
+                <p className="mt-1 text-[10px] uppercase tracking-wider text-[#a0a9b0]">
+                  De experiência
+                </p>
+              </div>
+
+              <div className="h-10 w-px bg-[#303940]" />
+
+              <div>
+                <p className="text-sm font-semibold text-white">
+                  Atendimento personalizado
+                </p>
+                <p className="mt-1 text-[10px] text-[#a0a9b0]">
+                  Soluções para cada condomínio
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* SERVIÇOS */}
+
       <section
         id="servicos"
         ref={servicesRef}
-        className={`border-b border-[#121213] bg-[#0b0b0f] px-0 py-20 transition-colors duration-700 md:py-[108px] ${servicesVisible ? "is-visible" : ""}`}
+        className={`border-b border-[#202020] bg-[#0b0b0f] px-0 py-20 transition-colors duration-700 md:py-[108px] ${
+          servicesVisible ? "is-visible" : ""
+        }`}
       >
         <div className={container}>
-          <div className="mb-14 text-center" data-reveal="up">
-            <p className="mb-6 flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
-              <span className="h-[2px] w-6 bg-[#ffd21f]" />O que fazemos
-            </p>
+          {/* CABEÇALHO */}
+          <div
+            className="mb-12 flex flex-col justify-between gap-6 md:mb-14 md:flex-row md:items-end"
+            data-reveal="up"
+          >
+            <div>
+              <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.2em] text-[#c4c4c4]">
+                Áreas de atuação
+              </p>
 
-            <h2 className="font-['Space_Grotesk'] text-[clamp(37px,4vw,55px)] font-semibold leading-tight tracking-[-0.05em]">
-              Presença preparada
-              <br />
-              <em className="not-italic text-[#ffd21f]">
-                para cuidar do acesso.
-              </em>
-            </h2>
+              <h2 className="font-serif text-[clamp(34px,4vw,46px)] font-normal leading-tight tracking-tight text-white">
+                Áreas de Atuação
+              </h2>
+
+              <p className="mt-4 max-w-[570px] text-base leading-6 text-[#a0a9b0]">
+                Conheça nossas soluções em portaria e controle de acesso,
+                desenvolvidas para atender às necessidades do seu condomínio.
+              </p>
+            </div>
+
+            <a
+              href="#contato"
+              className="group flex w-fit items-center gap-3 border-b border-white/30 pb-1 text-xs text-[#c4c4c4] transition-colors hover:border-white hover:text-white"
+            >
+              Ver todas as áreas
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </a>
           </div>
 
-          <div className="grid items-center gap-9 md:grid-cols-[1fr_330px_1fr] md:gap-[55px]">
-            {/* SERVIÇOS ESQUERDA */}
-            <div className="flex flex-col gap-7 md:gap-12">
-              {servicePoints
-                .filter((point) => point.side === "left")
-                .map((point, index) => (
-                  <article
-                    key={point.title}
-                    data-reveal="up"
-                    style={{ "--delay": `${index * 140}ms` } as CSSProperties}
-                    className="group relative flex items-start gap-4 transition-transform duration-300 hover:-translate-y-1 md:flex-row-reverse md:text-right"
-                  >
-                    <span className="mt-[-3px] grid h-8 w-8 shrink-0 place-items-center text-[#ffd21f] transition duration-300 group-hover:-translate-y-1 group-hover:rotate-6">
-                      <ServiceIcon index={index} />
-                    </span>
+          {/* CARDS DE SERVIÇOS */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {servicePoints.map((point, index) => (
+              <article
+                key={point.title}
+                data-reveal="up"
+                style={
+                  {
+                    "--delay": `${index * 100}ms`,
+                  } as CSSProperties
+                }
+                className="group flex min-h-[245px] flex-col rounded-xl border border-[#252525] bg-[#151515] p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-white hover:bg-white md:p-7"
+              >
+                {/* ÍCONE */}
+                <div className=" grid h-11 w-11  place-items-center rounded-full border border-[#39312d] text-[#b99a87] transition-all duration-300 group-hover:border-black group-hover:bg-black group-hover:text-white">
+                  <ServiceIcon index={index} />
+                </div>
 
-                    <div>
-                      <h3 className="mb-2 font-['Space_Grotesk'] text-base font-semibold text-white transition-colors group-hover:text-[#ffd21f]">
-                        {point.title}
-                      </h3>
-                      <p className="max-w-[260px] text-[11px] leading-relaxed text-[#a0a9b0] md:ml-auto">
-                        {point.description}
-                      </p>
-                    </div>
-                  </article>
-                ))}
-            </div>
+                {/* CONTEÚDO */}
+                <div className="mt-8">
+                  <h3 className="mb-3 font-serif text-[19px] font-semibold text-white transition-colors duration-300 group-hover:text-[#0b0b0f]">
+                    {point.title}
+                  </h3>
 
-            {/* IMAGEM CENTRAL */}
-            <div
-              data-reveal="image"
-              role="img"
-              aria-label="Controlador de acesso uniformizado em portaria de condomínio"
-              className="mx-auto h-[390px] w-full max-w-[330px] bg-[linear-gradient(180deg,transparent_58%,#f7f8f6_100%),url('/service-guard.jpg')] bg-cover bg-[52%_center] [clip-path:polygon(15%_0,85%_0,100%_100%,0_100%)] md:h-[520px]"
-            />
-
-            {/* SERVIÇOS DIREITA */}
-            <div className="flex flex-col gap-7 md:gap-12">
-              {servicePoints
-                .filter((point) => point.side === "right")
-                .map((point, index) => (
-                  <article
-                    key={point.title}
-                    data-reveal="up"
-                    style={
-                      { "--delay": `${(index + 3) * 140}ms` } as CSSProperties
-                    }
-                    className="group relative flex items-start gap-4 transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    <span className="mt-[-3px] grid h-8 w-8 shrink-0 place-items-center text-[#ffd21f] transition duration-300 group-hover:-translate-y-1 group-hover:rotate-6">
-                      <ServiceIcon index={index + 3} />
-                    </span>
-
-                    <div>
-                      <h3 className="mb-2 font-['Space_Grotesk'] text-base font-semibold text-white transition-colors group-hover:text-[#ffd21f]">
-                        {point.title}
-                      </h3>
-                      <p className="max-w-[260px] text-[11px] leading-relaxed text-[#a0a9b0]">
-                        {point.description}
-                      </p>
-                    </div>
-                  </article>
-                ))}
-            </div>
+                  <p className="max-w-[400px] text-base leading-[1.65] text-[#a0a9b0] transition-colors duration-300 group-hover:text-[#555]">
+                    {point.description}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -514,19 +605,18 @@ export default function Home() {
         <div
           className={`${container} grid gap-14 md:grid-cols-[0.8fr_1.2fr] md:gap-[130px]`}
         >
-          <div data-reveal="up">
-            <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#ffd21f]">
-              <span className="h-[2px] w-6 bg-[#ffd21f]" />O nosso jeito
+          <div>
+            <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.2em] text-[#c4c4c4]">
+              O nosso jeito
             </p>
 
-            <h2 className="font-['Space_Grotesk'] text-[clamp(42px,4.5vw,60px)] font-semibold leading-tight tracking-[-0.05em]">
-              Nossos
-              <br />
-              <em className="not-italic text-[#ffd21f]">diferenciais.</em>
+            <h2 className="font-serif text-[clamp(34px,4vw,46px)] font-normal leading-tight tracking-tight text-white">
+              Nossos diferenciais
             </h2>
 
-            <p className="mt-7 max-w-[300px] text-[13px] leading-[1.7] text-[#9ca8b0]">
-              Segurança, organização e tranquilidade para o seu condomínio.
+            <p className="mt-4 max-w-[440px] text-base leading-6 text-[#a0a9b0]">
+              Segurança, organização e tranquilidade para o seu condomínio, com
+              profissionais preparados eatendimento de qualidade.
             </p>
           </div>
 
@@ -535,70 +625,44 @@ export default function Home() {
               <div
                 key={item}
                 data-reveal="fade"
-                style={{ "--delay": `${index * 70}ms` } as CSSProperties}
-                className="grid min-h-[75px] grid-cols-[29px_1fr] items-center gap-3 border-b border-[#303940] py-4"
+                style={
+                  {
+                    "--delay": `${index * 70}ms`,
+                  } as CSSProperties
+                }
+                className="group grid min-h-[85px] grid-cols-[32px_1fr] items-center gap-3 border-b border-[#303940] py-5 transition-colors duration-300 hover:border-[#ffd21f]"
               >
-                <span className="font-['Space_Grotesk'] text-[11px] text-[#ffd21f]">
+                <span className="text-[11px] font-medium tabular-nums text-[#ffd21f] transition-transform duration-300 group-hover:translate-x-1">
                   {String(index + 1).padStart(2, "0")}
                 </span>
 
-                <p className="text-xs leading-relaxed text-[#d5dde2]">{item}</p>
+                <p className="text-[13px] leading-relaxed text-[#d5dde2] transition-colors duration-300 group-hover:text-white">
+                  {item}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* BANNER DE DESTAQUE */}
-      <section className="bg-[#ffd21f] py-[72px]">
-        <div
-          className={`${container} flex flex-col items-start justify-between gap-10 md:flex-row md:items-center md:gap-[45px]`}
-        >
-          <div data-reveal="up">
-            <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-[#746000]">
-              <span className="h-[2px] w-6 bg-[#746000]" />
-              EXPERTISE · Solução em Portaria
-            </p>
-
-            <h2 className="max-w-[690px] font-['Space_Grotesk'] text-[clamp(36px,4vw,54px)] font-semibold leading-tight tracking-[-0.05em] text-black">
-              Precisando de portaria
-              <br />
-              para o seu condomínio?
-            </h2>
-
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-black">
-              Conte com uma equipe preparada para atender às necessidades do seu
-              condomínio.
-            </p>
-          </div>
-
-          <a
-            data-reveal="fade"
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex shrink-0 items-center justify-center gap-4 bg-[#0b0b0f] px-6 py-4 text-[11px] font-bold text-[#ffd21f] transition duration-300 hover:-translate-y-1 hover:bg-[#161616]"
-          >
-            Solicitar orçamento pelo WhatsApp <Arrow />
-          </a>
-        </div>
-      </section>
       {/* CONTATO */}
-      <section id="contato" className="bg-[#0b0b0f] py-20 md:py-[120px]">
+      <section
+        id="contato"
+        className="bg-[#0b0b0f] py-20 md:py-[120px] border-t border-[#303940]"
+      >
         <div
           className={`${container} grid gap-14 md:grid-cols-[0.8fr_1.2fr] md:gap-[105px]`}
         >
           {/* INFORMAÇÕES */}
           <div data-reveal="up">
-            <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
-              <span className="h-[2px] w-6 bg-[#ffd21f]" />
+            <p className="mb-7 text-[10px] font-bold uppercase tracking-[0.2em] text-[#c4c4c4]">
               Entre em contato
             </p>
 
-            <h2 className="font-['Space_Grotesk'] text-[clamp(38px,4vw,54px)] font-semibold leading-tight tracking-[-0.05em]">
-              Solicite uma visita
-              <br />
+            <h2 className="font-serif text-[clamp(34px,4vw,46px)] font-normal leading-tight tracking-tight text-white">
+              Solicite uma visita{" "}
               <em className="not-italic text-[#ffd21f]">
+                {" "}
                 e faça seu orçamento!
               </em>
             </h2>
@@ -639,7 +703,7 @@ export default function Home() {
           <form
             data-reveal="fade"
             onSubmit={submitForm}
-            className="border border-[#303940] p-6 md:p-[37px]"
+            className="border border-[#303940] p-6 md:p-[37px] rounded-xl"
           >
             {submitted ? (
               <div className="px-2 py-10 text-center">
@@ -647,7 +711,7 @@ export default function Home() {
                   ✓
                 </span>
 
-                <h3 className="font-['Space_Grotesk'] text-2xl font-semibold">
+                <h3 className="text-2xl font-semibold">
                   Solicitação preparada.
                 </h3>
 
@@ -668,11 +732,7 @@ export default function Home() {
             ) : (
               <>
                 <div className="mb-6 border-b border-[#303940] pb-6">
-                  <span className="text-[9px] font-bold tracking-[0.18em] text-[#ffd21f]">
-                    ORÇAMENTO
-                  </span>
-
-                  <h3 className="mt-2 font-['Space_Grotesk'] text-[25px] font-semibold">
+                  <h3 className="mt-2 text-[25px] font-normal leading-tight tracking-tight">
                     Conte como podemos ajudar.
                   </h3>
                 </div>
@@ -758,10 +818,20 @@ export default function Home() {
                 </p>
 
                 <button
-                  className="inline-flex w-full items-center justify-center gap-4 bg-[#ffd21f] px-5 py-4 text-[11px] font-bold text-black transition hover:-translate-y-1 hover:bg-[#ffe37a] sm:w-auto"
+                  className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-[#ffd21f] px-5 py-[13px] text-sm font-bold text-black shadow-[0_4px_14px_rgba(255,210,31,0.08)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#ffe37a] hover:shadow-[0_8px_24px_rgba(255,210,31,0.18)] active:translate-y-0 active:scale-[0.98] sm:w-auto cursor-pointer"
                   type="submit"
                 >
-                  Continuar para atendimento <Arrow />
+                  {/* Efeito de brilho */}
+                  <span className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+
+                  <span className="relative z-10">
+                    Continuar para atendimento
+                  </span>
+
+                  <FaArrowRight
+                    size={14}
+                    className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+                  />
                 </button>
               </>
             )}
@@ -770,7 +840,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-[#303940] bg-black pb-5 pt-14 text-[#d9dfe3]">
+      <footer className="border-t border-[#303940]  pb-5 pt-14 text-[#d9dfe3]">
         <div
           className={`${container} grid gap-8 border-b border-[#303940] pb-12 sm:grid-cols-2 md:grid-cols-[1.2fr_0.9fr_0.7fr_1fr]`}
         >
@@ -829,11 +899,8 @@ export default function Home() {
             © 2025 EXPERTISE — Solução em Portaria. Todos os direitos
             reservados.
           </span>
-
-          <span>São Paulo — SP</span>
         </div>
       </footer>
-      {/* BOTÃO VOLTAR AO TOPO */}
 
       {/* MODAL DE CONTATOS WHATSAPP */}
       {whatsAppModalOpen && (
@@ -883,7 +950,7 @@ export default function Home() {
 
               <h2
                 id="whatsapp-modal-title"
-                className="font-['Space_Grotesk'] text-[30px] font-semibold leading-tight tracking-[-0.04em] text-white"
+                className="text-[30px] font-semibold leading-tight tracking-[-0.04em] text-white"
               >
                 Como podemos <span className="text-[#ffd21f]">ajudar?</span>
               </h2>
@@ -943,41 +1010,14 @@ export default function Home() {
         </div>
       )}
 
-      {/* BOTÃO VOLTAR AO TOPO */}
-      {showBackToTop && (
-        <button
-          type="button"
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            })
-          }
-          aria-label="Voltar ao topo"
-          className="fixed bottom-3 right-4 z-[100] grid h-11 w-11 place-items-center rounded-full border border-black/10 bg-[#ffd21f] text-2xl font-bold text-black shadow-[0_5px_25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-8 md:right-8 cursor-pointer"
-        >
-          ↑
-        </button>
-      )}
-
       {/* BOTÃO FLUTUANTE WHATSAPP */}
       <button
         type="button"
         onClick={() => setWhatsAppModalOpen(true)}
         aria-label="Escolher atendimento pelo WhatsApp"
-       className="fixed bottom-[62px] right-4 z-[100] grid h-11 w-11 place-items-center rounded-full bg-[#ffd21f] text-black shadow-[0_5px_25px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-24 md:right-8"
+        className="fixed  right-4 z-[100] grid h-15 w-15 place-items-center rounded-full bg-[#ffd21f] text-black  transition-all duration-300 hover:-translate-y-1 hover:bg-[#ffe37a] md:bottom-15 md:right-8 cursor-pointer"
       >
-        <svg
-          viewBox="0 0 24 24"
-          className="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z" />
-        </svg>
+        <FaWhatsapp className="h-7 w-7" />
       </button>
     </main>
   );
